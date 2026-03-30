@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-neon-pink: #ff00ff;
+  --color-neon-blue: #00f3ff;
+  --color-neon-green: #39ff14;
+  --color-neon-purple: #bc13fe;
+  --font-digital: "Orbitron", sans-serif;
+  --font-pixel: "Press Start 2P", system-ui;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white overflow-hidden;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .neon-border-blue {
+    box-shadow: 0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue);
+    border: 1px solid var(--color-neon-blue);
+  }
+  .neon-border-pink {
+    box-shadow: 0 0 5px var(--color-neon-pink), 0 0 10px var(--color-neon-pink);
+    border: 1px solid var(--color-neon-pink);
+  }
+  .neon-text-blue {
+    text-shadow: 0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue);
+  }
+  .neon-text-pink {
+    text-shadow: 0 0 5px var(--color-neon-pink), 0 0 10px var(--color-neon-pink);
+  }
+  .neon-text-green {
+    text-shadow: 0 0 5px var(--color-neon-green), 0 0 10px var(--color-neon-green);
+  }
+
+  .glitch-text {
+    position: relative;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+
+  .glitch-text::before {
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+    text-shadow: -2px 0 #ff00ff;
+    left: 2px;
+  }
+
+  .glitch-text::after {
+    animation: glitch-anim2 3s infinite linear alternate-reverse;
+    text-shadow: -2px 0 #00f3ff, 2px 2px #ff00ff;
+    left: -2px;
+  }
+
+  .static-noise {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+    background-repeat: repeat;
+    animation: noise 0.2s infinite;
+    opacity: .05;
+    visibility: visible;
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  @keyframes noise {
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) }
+    40% { transform: translate(-5%,15%) }
+    50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) }
+    70% { transform: translate(0,10%) }
+    80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) }
+    100% { transform: translate(5%,0) }
+  }
+
+  @keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 20px, 0); }
+    20% { clip: rect(30px, 9999px, 40px, 0); }
+    40% { clip: rect(50px, 9999px, 60px, 0); }
+    60% { clip: rect(70px, 9999px, 80px, 0); }
+    80% { clip: rect(90px, 9999px, 100px, 0); }
+    100% { clip: rect(0px, 9999px, 10px, 0); }
+  }
+
+  @keyframes glitch-anim2 {
+    0% { clip: rect(80px, 9999px, 90px, 0); }
+    20% { clip: rect(60px, 9999px, 70px, 0); }
+    40% { clip: rect(40px, 9999px, 50px, 0); }
+    60% { clip: rect(20px, 9999px, 30px, 0); }
+    80% { clip: rect(0px, 9999px, 10px, 0); }
+    100% { clip: rect(90px, 9999px, 100px, 0); }
+  }
+
+  @keyframes glitch-skew {
+    0% { transform: skew(1deg); }
+    10% { transform: skew(-1deg); }
+    20% { transform: skew(2deg); }
+    30% { transform: skew(-2deg); }
+    40% { transform: skew(3deg); }
+    50% { transform: skew(-3deg); }
+    60% { transform: skew(1deg); }
+    70% { transform: skew(-1deg); }
+    80% { transform: skew(0deg); }
+    90% { transform: skew(2deg); }
+    100% { transform: skew(-2deg); }
+  }
+}
